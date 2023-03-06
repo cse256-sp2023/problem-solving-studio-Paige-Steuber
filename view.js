@@ -1,8 +1,27 @@
 // ---- Define your dialogs  and panels here ----
+let perm_panel_id_prefix = "effective_perm_panel";
+let add_info_col = true;
+let perm_panel = define_new_effective_permissions(perm_panel_id_prefix, add_info_col, which_permissions = null);
+
+let user_panel_id_prefix = "user_select"
+let  select_button_text = "Select User";
+let user_panel = define_new_user_select_field(user_panel_id_prefix, select_button_text, on_user_change = function(selected_user){
+    $('#effective_perm_panel').attr('username', selected_user)
+});
+
+$('#sidepanel').append(perm_panel)
+$('#sidepanel').append(user_panel)
+
+let blank_dialog_id_prefix = "blank_dialog"
+let blank_dialog = define_new_dialog(blank_dialog_id_prefix, title='blank', options = {});
 
 
-
+$('.perm_info').click(function(){
+    console.log('clicked!')
+})
 // ---- Display file structure ----
+$('#effective_perm_panel').attr('filepath', '/C')
+
 
 // (recursively) makes and returns an html element (wrapped in a jquery object) for a given file object
 function make_file_element(file_obj) {

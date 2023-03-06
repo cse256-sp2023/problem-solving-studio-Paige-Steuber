@@ -163,6 +163,7 @@ function define_new_effective_permissions(id_prefix, add_info_col = false, which
             <td id="${id_prefix}_name_${p_id}" class="effective_perm_name">${p}</td>
         </tr>
         `)
+        
         // If we want to add an additional info column (which does nothing by default)
         if(add_info_col) {
             row.append(`
