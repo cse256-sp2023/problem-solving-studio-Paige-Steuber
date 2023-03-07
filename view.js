@@ -17,8 +17,10 @@ let blank_dialog = define_new_dialog(blank_dialog_id_prefix, title='blank', opti
 
 
 $('.perm_info').click(function(){
-    console.log('clicked!')
+    console.log('clicked!');
+    $(blank_dialog).dialog( "open" );
 })
+
 // ---- Display file structure ----
 $('#effective_perm_panel').attr('filepath', '/C')
 
