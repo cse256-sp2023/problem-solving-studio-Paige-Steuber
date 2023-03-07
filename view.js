@@ -12,13 +12,36 @@ let user_panel = define_new_user_select_field(user_panel_id_prefix, select_butto
 $('#sidepanel').append(perm_panel)
 $('#sidepanel').append(user_panel)
 
-let blank_dialog_id_prefix = "blank_dialog"
-let blank_dialog = define_new_dialog(blank_dialog_id_prefix, title='blank', options = {});
+let blank_dialog_id_prefix = "perm_dialog"
+let blank_dialog = define_new_dialog(blank_dialog_id_prefix, title='Permissions', options = {});
 
 
 $('.perm_info').click(function(){
     console.log('clicked!');
+
+    // open dialog box
     $(blank_dialog).dialog( "open" );
+
+    console.log($('#effective_perm_panel').attr('filepath'));
+    console.log($('#effective_perm_panel').attr('username'));
+    console.log($( this ).attr('permission_name'));
+
+    // get variables
+    let click_filename = $('#effective_perm_panel').attr('filepath');
+    let click_username = $('#effective_perm_panel').attr('username');
+    let permission_type = $( this ).attr('permission_name');
+
+     // get variable objects
+    my_file_obj_var = path_to_file[click_filename];
+    my_user_obj_var = all_users[click_username];
+
+    // get permission text
+    let users_permissions = allow_user_action(my_file_obj_var, my_user_obj_var, permission_type, explain_why = true);
+    let explanation_text = get_explanation_text(users_permissions)
+    console.log(explanation_text);
+
+    $(blank_dialog).text(explanation_text);
+
 })
 
 // ---- Display file structure ----
